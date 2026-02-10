@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Weather App — Clima en Tiempo Real",
+    "description": "Consulta el clima actual de cualquier ciudad del mundo. Temperatura, humedad y descripción al instante."
+  },
+  "header": {
+    "title": "Weather App",
+    "subtitle": "Busca el clima actual de cualquier ciudad del mundo"
+  },
+  "search": {
+    "placeholder": "Ingresa el nombre de una ciudad...",
+    "inputLabel": "Nombre de la ciudad",
+    "button": "Buscar",
+    "buttonLoading": "Buscando...",
+    "buttonAriaLabel": "Buscar clima"
+  },
+  "weather": {
+    "regionLabel": "Información del clima",
+    "humidity": "Humedad",
+    "temperatureUnit": "°C"
+  },
+  "loading": {
+    "label": "Cargando..."
+  },
+  "errors": {
+    "emptyCity": "Por favor, ingresa el nombre de una ciudad.",
+    "cityNotFound": "No se encontró la ciudad \"{city}\". Verifica el nombre e intenta de nuevo.",
+    "invalidApiKey": "API Key inválida. Verifica tu configuración.",
+    "generic": "Ocurrió un error al obtener el clima. Intenta de nuevo más tarde.",
+    "unexpected": "Ocurrió un error inesperado."
+  },
+  "theme": {
+    "toggleLight": "Cambiar a modo claro",
+    "toggleDark": "Cambiar a modo oscuro"
+  },
+  "language": {
+    "switchTo": "English"
+  }
+}

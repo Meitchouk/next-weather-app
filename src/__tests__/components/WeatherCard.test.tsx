@@ -1,6 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { WeatherCard } from "@/components/WeatherCard";
+import { screen } from "@testing-library/react";
+import { render } from "@/__tests__/helpers/renderWithProviders";
+import { WeatherCard } from "@/components/organisms/WeatherCard";
 import type { WeatherData } from "@/types";
 
 const mockData: WeatherData = {

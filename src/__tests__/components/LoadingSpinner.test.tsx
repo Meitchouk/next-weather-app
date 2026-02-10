@@ -1,6 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { screen } from "@testing-library/react";
+import { render } from "@/__tests__/helpers/renderWithProviders";
+import { LoadingSpinner } from "@/components/molecules/LoadingSpinner";
 
 describe("LoadingSpinner component", () => {
   it("should render with a status role", () => {

@@ -1,4 +1,6 @@
-export { SearchBar } from "./SearchBar";
-export { WeatherCard } from "./WeatherCard";
-export { ErrorMessage } from "./ErrorMessage";
-export { LoadingSpinner } from "./LoadingSpinner";
+// Atomic Design barrel exports
+export * from "./atoms";
+export * from "./molecules";
+export * from "./organisms";
+export * from "./templates";
+

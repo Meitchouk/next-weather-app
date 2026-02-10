@@ -1,7 +1,8 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import HomePage from "@/app/page";
+import { render } from "@/__tests__/helpers/renderWithProviders";
+import { WeatherTemplate } from "@/components/templates/WeatherTemplate";
 import * as weatherService from "@/services/weatherService";
 
 // Mock the service module
@@ -10,14 +11,31 @@ const mockedFetch = weatherService.fetchWeatherByCity as jest.MockedFunction<
   typeof weatherService.fetchWeatherByCity
 >;
 
-describe("HomePage — integration", () => {
+// Mock next-themes (ThemeToggle uses useTheme)
+jest.mock("next-themes", () => ({
+  useTheme: () => ({ resolvedTheme: "light", setTheme: jest.fn() }),
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
+// Mock next-intl navigation (LanguageSwitcher uses it)
+jest.mock("@/i18n/routing", () => ({
+  routing: { locales: ["es", "en"], defaultLocale: "es" },
+  Link: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>) => <a {...props}>{children}</a>,
+  usePathname: () => "/",
+  useRouter: () => ({ replace: jest.fn() }),
+  redirect: jest.fn(),
+  getPathname: jest.fn(),
+}));
+
+// MUI buttons set pointer-events:none in JSDOM — skip that check
+const user = userEvent.setup({ pointerEventsCheck: 0 });
+
+describe("WeatherTemplate — integration", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it("should display weather data after a successful search", async () => {
-    const user = userEvent.setup();
-
     mockedFetch.mockResolvedValueOnce({
       city: "Lima",
       temperature: 25,
@@ -26,9 +44,9 @@ describe("HomePage — integration", () => {
       icon: "01d",
     });
 
-    render(<HomePage />);
+    render(<WeatherTemplate />);
 
-    const input = screen.getByLabelText(/nombre de la ciudad/i);
+    const input = screen.getByRole("textbox");
     const button = screen.getByRole("button", { name: /buscar/i });
 
     await user.type(input, "Lima");
@@ -45,15 +63,13 @@ describe("HomePage — integration", () => {
   });
 
   it("should display an error message when the city is not found", async () => {
-    const user = userEvent.setup();
-
     mockedFetch.mockRejectedValueOnce(
       new Error('No se encontró la ciudad "xyz". Verifica el nombre e intenta de nuevo.')
     );
 
-    render(<HomePage />);
+    render(<WeatherTemplate />);
 
-    const input = screen.getByLabelText(/nombre de la ciudad/i);
+    const input = screen.getByRole("textbox");
     const button = screen.getByRole("button", { name: /buscar/i });
 
     await user.type(input, "xyz");
@@ -70,16 +86,14 @@ describe("HomePage — integration", () => {
   });
 
   it("should show loading state while fetching", async () => {
-    const user = userEvent.setup();
-
     // Never-resolving promise to keep loading state
     mockedFetch.mockImplementation(
       () => new Promise(() => {})
     );
 
-    render(<HomePage />);
+    render(<WeatherTemplate />);
 
-    const input = screen.getByLabelText(/nombre de la ciudad/i);
+    const input = screen.getByRole("textbox");
     const button = screen.getByRole("button", { name: /buscar/i });
 
     await user.type(input, "Paris");

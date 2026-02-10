@@ -1,6 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { ErrorMessage } from "@/components/ErrorMessage";
+import { screen } from "@testing-library/react";
+import { render } from "@/__tests__/helpers/renderWithProviders";
+import { ErrorMessage } from "@/components/molecules/ErrorMessage";
 
 describe("ErrorMessage component", () => {
   it("should display the error message", () => {

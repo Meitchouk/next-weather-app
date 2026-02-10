@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "title": "Weather App — Real-Time Weather",
+    "description": "Check the current weather for any city in the world. Temperature, humidity and description instantly."
+  },
+  "header": {
+    "title": "Weather App",
+    "subtitle": "Search the current weather for any city in the world"
+  },
+  "search": {
+    "placeholder": "Enter a city name...",
+    "inputLabel": "City name",
+    "button": "Search",
+    "buttonLoading": "Searching...",
+    "buttonAriaLabel": "Search weather"
+  },
+  "weather": {
+    "regionLabel": "Weather information",
+    "humidity": "Humidity",
+    "temperatureUnit": "°C"
+  },
+  "loading": {
+    "label": "Loading..."
+  },
+  "errors": {
+    "emptyCity": "Please enter a city name.",
+    "cityNotFound": "City \"{city}\" not found. Check the name and try again.",
+    "invalidApiKey": "Invalid API Key. Check your configuration.",
+    "generic": "An error occurred while fetching the weather. Try again later.",
+    "unexpected": "An unexpected error occurred."
+  },
+  "theme": {
+    "toggleLight": "Switch to light mode",
+    "toggleDark": "Switch to dark mode"
+  },
+  "language": {
+    "switchTo": "Español"
+  }
+}

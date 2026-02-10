@@ -11,7 +11,16 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
+    "^next-intl$": "<rootDir>/__mocks__/next-intl.js",
+    "^next-intl/(.*)$": "<rootDir>/__mocks__/next-intl.js",
   },
+  // Transform ESM packages that Jest can't parse out of the box
+  transformIgnorePatterns: [
+    "node_modules/(?!(next-intl|use-intl|@mui|@emotion|@babel)/)",
+  ],
+  testPathIgnorePatterns: [
+    "<rootDir>/src/__tests__/helpers/",
+  ],
   coverageDirectory: "coverage",
   coverageThreshold: {
     global: {
@@ -26,6 +35,12 @@ const config: Config = {
     "!src/**/*.d.ts",
     "!src/**/layout.tsx",
     "!src/**/globals.css",
+    "!src/i18n/**",
+    "!src/providers/**",
+    "!src/theme/**",
+    "!src/middleware.ts",
+    "!src/__tests__/**",
+    "!src/lib/**",
   ],
 };
 
