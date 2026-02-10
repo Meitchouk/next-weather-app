@@ -1,0 +1,1 @@
+export { fetchWeatherByCity } from "./weatherService";
