@@ -11,7 +11,6 @@ Aplicación web para consultar el clima actual de cualquier ciudad del mundo. Co
 - Historial de búsquedas
 - Cancelación automática de requests obsoletos
 - Accesibilidad (ARIA labels, roles semánticos)
-- Cobertura de tests de 81.6% en branches
 
 ## Requisitos Previos
 
