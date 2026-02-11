@@ -7,9 +7,6 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import { IconButton } from "@/components/atoms";
 import type { Locale } from "@/i18n";
 
-/**
- * Organism: Toggles between available locales (es ↔ en).
- */
 export function LanguageSwitcher() {
   const locale = useLocale() as Locale;
   const t = useTranslations("language");

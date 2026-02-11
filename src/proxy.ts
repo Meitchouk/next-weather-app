@@ -4,6 +4,5 @@ import { routing } from "@/i18n/routing";
 export const proxy = createMiddleware(routing);
 
 export const config = {
-  // Match only internationalized pathnames
   matcher: ["/", "/(es|en)/:path*"],
 };

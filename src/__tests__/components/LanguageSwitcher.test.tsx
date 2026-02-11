@@ -9,7 +9,7 @@ const user = userEvent.setup({ pointerEventsCheck: 0 });
 const mockReplace = jest.fn();
 
 // Access the mutable locale setter from the mock
-const { __setMockLocale } = require("next-intl");
+import { __setMockLocale } from "next-intl";
 
 jest.mock("@/i18n/routing", () => ({
   routing: { locales: ["es", "en"], defaultLocale: "es" },

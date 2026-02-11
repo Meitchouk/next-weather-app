@@ -7,10 +7,11 @@ import { Typography } from "@/components/atoms";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
-/**
- * Organism: App header with title, theme toggle and language switcher.
- */
-export function Header() {
+interface HeaderProps {
+  searchSlot?: React.ReactNode;
+}
+
+export function Header({ searchSlot }: HeaderProps) {
   const t = useTranslations("header");
 
   return (
@@ -18,38 +19,52 @@ export function Header() {
       component="header"
       sx={{
         width: "100%",
-        maxWidth: 600,
         display: "flex",
-        flexDirection: "column",
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
-        mb: 4,
-        gap: 1,
+        gap: { xs: 1, md: 2 },
+        mb: { xs: 1.5, md: 2 },
       }}
     >
-      {/* Controls row */}
       <Box
         sx={{
-          width: "100%",
           display: "flex",
-          justifyContent: "flex-end",
-          gap: 1,
+          alignItems: "center",
+          justifyContent: { xs: "center", md: "flex-start" },
+          gap: 0.75,
+          flexShrink: 0,
+          width: { xs: "100%", md: "auto" },
+        }}
+      >
+        <WbSunnyIcon sx={{ fontSize: { xs: 28, md: 24 }, color: "warning.main" }} />
+        <Typography
+          variant="h6"
+          fontWeight="extrabold"
+          sx={{ whiteSpace: "nowrap" }}
+        >
+          {t("title")}
+        </Typography>
+      </Box>
+
+      {searchSlot && (
+        <Box sx={{ flex: 1, width: "100%", maxWidth: { md: 520 } }}>
+          {searchSlot}
+        </Box>
+      )}
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 0.5,
+          flexShrink: 0,
+          order: { xs: -1, md: 0 },
+          alignSelf: { xs: "flex-end", md: "center" },
         }}
       >
         <LanguageSwitcher />
         <ThemeToggle />
       </Box>
-
-      {/* Title */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <WbSunnyIcon sx={{ fontSize: 40, color: "warning.main" }} />
-        <Typography variant="h4" fontWeight="extrabold">
-          {t("title")}
-        </Typography>
-      </Box>
-
-      <Typography variant="body1" color="text.secondary" textAlign="center">
-        {t("subtitle")}
-      </Typography>
     </Box>
   );
 }

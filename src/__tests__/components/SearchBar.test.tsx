@@ -12,9 +12,7 @@ describe("SearchBar component", () => {
     render(<SearchBar onSearch={jest.fn()} isLoading={false} />);
 
     expect(screen.getByRole("textbox")).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /buscar/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /buscar/i })).toBeInTheDocument();
   });
 
   it("should call onSearch with the trimmed city name on form submit", async () => {

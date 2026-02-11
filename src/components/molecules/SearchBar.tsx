@@ -13,10 +13,6 @@ interface SearchBarProps {
   isLoading: boolean;
 }
 
-/**
- * Molecule: Search input + submit button.
- * Composes Atoms (Input, Button) and integrates i18n.
- */
 export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
   const t = useTranslations("search");
   const [city, setCity] = useState("");

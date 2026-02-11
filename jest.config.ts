@@ -11,8 +11,8 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
-    "^next-intl$": "<rootDir>/__mocks__/next-intl.js",
-    "^next-intl/(.*)$": "<rootDir>/__mocks__/next-intl.js",
+    "^next-intl$": "<rootDir>/__mocks__/next-intl.ts",
+    "^next-intl/(.*)$": "<rootDir>/__mocks__/next-intl.ts",
   },
   // Transform ESM packages that Jest can't parse out of the box
   transformIgnorePatterns: [
@@ -38,7 +38,11 @@ const config: Config = {
     "!src/i18n/**",
     "!src/providers/**",
     "!src/theme/**",
-    "!src/middleware.ts",
+    "!src/config/**",
+    "!src/proxy.ts",
+    "!src/app/**/loading.tsx",
+    "!src/app/**/error.tsx",
+    "!src/app/**/not-found.tsx",
     "!src/__tests__/**",
     "!src/lib/**",
   ],

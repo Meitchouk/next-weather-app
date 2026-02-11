@@ -14,9 +14,6 @@ const getTrue = () => true;
 const getFalse = () => false;
 
 /**
- * Organism: Toggle button for dark/light mode.
- * Reads and sets the theme via next-themes.
- *
  * Uses useSyncExternalStore to detect client mount without
  * triggering a cascading setState inside useEffect.
  */

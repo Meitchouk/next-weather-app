@@ -1,8 +1,5 @@
-"use client";
-
 import { createTheme } from "@mui/material/styles";
 
-/** Light MUI theme */
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
@@ -50,7 +47,6 @@ export const lightTheme = createTheme({
   },
 });
 
-/** Dark MUI theme */
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",

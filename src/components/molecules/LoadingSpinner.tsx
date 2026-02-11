@@ -4,9 +4,6 @@ import { useTranslations } from "next-intl";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-/**
- * Molecule: Loading indicator using MUI CircularProgress.
- */
 export function LoadingSpinner() {
   const t = useTranslations("loading");
 
