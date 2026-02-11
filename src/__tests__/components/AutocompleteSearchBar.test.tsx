@@ -148,4 +148,42 @@ describe("AutocompleteSearchBar component", () => {
 
     expect(onSearch).toHaveBeenCalledWith("Paris");
   });
+
+  it("should trim whitespace from search input on Enter", async () => {
+    const onSearch = jest.fn();
+    render(<AutocompleteSearchBar onSearch={onSearch} isLoading={false} />);
+
+    const input = screen.getByRole("combobox");
+    await user.type(input, "  Berlin  ");
+    await user.keyboard("{Enter}");
+
+    expect(onSearch).toHaveBeenCalledWith("Berlin");
+  });
+
+  it("should not call onSearch when value is null", async () => {
+    mockedSuggestions.mockResolvedValueOnce([
+      { name: "Rome", lat: 41.9, lon: 12.5, country: "IT" },
+    ]);
+
+    const onSearch = jest.fn();
+    render(<AutocompleteSearchBar onSearch={onSearch} isLoading={false} />);
+
+    // Simulate selecting null (clearing the value)
+    const input = screen.getByRole("combobox") as HTMLInputElement;
+    await user.click(input);
+    await user.keyboard("{Escape}");
+
+    expect(onSearch).not.toHaveBeenCalled();
+  });
+
+  it("should handle string suggestions (freeSolo mode)", async () => {
+    const onSearch = jest.fn();
+    render(<AutocompleteSearchBar onSearch={onSearch} isLoading={false} />);
+
+    const input = screen.getByRole("combobox");
+    await user.type(input, "CustomCity");
+    await user.keyboard("{Enter}");
+
+    expect(onSearch).toHaveBeenCalledWith("CustomCity");
+  });
 });

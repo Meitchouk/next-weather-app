@@ -69,7 +69,7 @@ export function ForecastCard({ day, convertTemp, unitSymbol }: ForecastCardProps
             alt={day.description}
             width={48}
             height={48}
-            unoptimized
+            unoptimized={true}
           />
         </Box>
 

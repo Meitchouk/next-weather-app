@@ -1,216 +1,125 @@
-# 🌤️ Weather App — Aplicación de Clima
+# Weather App
 
-Aplicación web para consultar el clima actual de cualquier ciudad del mundo. Construida con **Next.js 16**, **TypeScript**, **MUI 7** y la API de **OpenWeatherMap**.
+Aplicación web para consultar el clima actual de cualquier ciudad del mundo. Construida con Next.js 16, TypeScript, MUI 7 e integración con la API de OpenWeatherMap.
 
----
+## Características
 
-## 📋 Tabla de Contenidos
+- Búsqueda de clima actual por nombre de ciudad
+- Conversión de temperatura entre Celsius y Fahrenheit
+- Internacionalización (Español e Inglés)
+- Modo claro y oscuro
+- Historial de búsquedas
+- Cancelación automática de requests obsoletos
+- Accesibilidad (ARIA labels, roles semánticos)
+- Cobertura de tests de 81.6% en branches
 
-- [Características](#-características)
-- [Arquitectura y Patrones de Diseño](#-arquitectura-y-patrones-de-diseño)
-- [Requisitos Previos](#-requisitos-previos)
-- [Instalación](#-instalación)
-- [Configuración](#-configuración)
-- [Ejecución](#-ejecución)
-- [Tests](#-tests)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Tecnologías](#-tecnologías)
-- [Decisiones Arquitectónicas (ADR)](#-decisiones-arquitectónicas-adr)
+## Requisitos Previos
 
----
+- Node.js 18 o superior
+- npm 9 o superior
+- API Key de OpenWeatherMap (gratuita en https://openweathermap.org/)
 
-## ✨ Características
-
-- 🔍 Búsqueda del clima actual por nombre de ciudad
-- 🌡️ Muestra temperatura (°C / °F), humedad (%) y descripción del clima
-- 🌐 **Internacionalización (i18n)** — Español e Inglés con `next-intl`
-- 🌗 **Modo claro / oscuro** — Sincronizado MUI + next-themes
-- 🎨 **Design System** — MUI 7 (Material UI) como librería de componentes
-- ⚛️ **Atomic Design** — Atoms → Molecules → Organisms → Templates
-- 🕐 **Historial de búsquedas** — Últimas 5 ciudades persistidas en localStorage
-- 🔄 **Toggle °C / °F** — Conversión de temperatura con preferencia guardada
-- ✨ **Animaciones** — Entrada suave del WeatherCard con MUI Grow
-- 🚫 **Cancelación de requests** — AbortController evita respuestas obsoletas
-- 🛡️ **Error codes tipados** — `WeatherServiceError` desacoplado de i18n
-- ♿ **Accesibilidad** — Labels ARIA, roles semánticos, screen-reader text
-- 📊 Cobertura de tests ≥ 80%
-
----
-
-## 🏗️ Arquitectura y Patrones de Diseño
-
-| Patrón | Dónde se aplica | Propósito |
-|---|---|---|
-| **Atomic Design** | `components/{atoms,molecules,organisms,templates}` | Jerarquía de componentes escalable y reutilizable |
-| **Service / Repository** | `services/weatherService.ts` | Encapsular toda la lógica de comunicación con la API |
-| **Adapter** | `adaptWeatherResponse()` | Transformar la respuesta de OpenWeatherMap a modelo interno |
-| **Custom Hook** | `hooks/useWeather.ts` | Separar lógica de estado del UI |
-| **Error Codes** | `services/errors.ts` | Desacoplar errores del servicio de la capa de i18n |
-| **AbortController** | `hooks/useWeather.ts` | Cancelar requests obsoletos al buscar de nuevo |
-| **Barrel Exports** | Archivos `index.ts` | Simplificar imports y controlar API pública |
-| **Provider Composition** | `providers/AppProviders.tsx` | Componer Emotion SSR + next-themes + MUI Theme |
-| **Centralized Config** | `config/env.ts` | Validar variables de entorno en un solo punto |
-
----
-
-## 🔧 Requisitos Previos
-
-- **Node.js** 18+ (recomendado: 20 LTS)
-- **npm** 9+
-- Cuenta gratuita en [OpenWeatherMap](https://openweathermap.org/) para obtener una API Key
-
----
-
-## 📦 Instalación
+## Instalación
 
 ```bash
-# Clonar el repositorio
 git clone <repo-url>
 cd weather-app
-
-# Instalar dependencias
 npm install
 ```
 
----
+## Configuración
 
-## ⚙️ Configuración
-
-1. Obtén una API Key gratuita en: https://openweathermap.org/api
-2. Copia el archivo de ejemplo de variables de entorno:
-
+1. Copia el archivo de ejemplo:
 ```bash
 cp .env.example .env.local
 ```
 
-3. Edita `.env.local` y reemplaza el valor:
-
+2. Edita `.env.local` con tu API Key de OpenWeatherMap:
 ```
-NEXT_PUBLIC_OPENWEATHER_API_KEY=tu_api_key_aquí
+NEXT_PUBLIC_OPENWEATHER_API_KEY=tu_api_key_aqui
 ```
 
----
+## Ejecución
 
-## 🚀 Ejecución
-
+**Modo desarrollo:**
 ```bash
-# Modo desarrollo
 npm run dev
+```
+La aplicación estará disponible en http://localhost:3000
 
-# Build de producción
+**Build de producción:**
+```bash
 npm run build
-
-# Servir build de producción
 npm start
-
-# Formatear código
-npm run format
-
-# Verificar formato (CI)
-npm run format:check
 ```
 
-La aplicación estará disponible en: **http://localhost:3000**
-
----
-
-## 🧪 Tests
-
+**Formatear código:**
 ```bash
-# Ejecutar todos los tests
+npm run format
+```
+
+## Tests
+
+**Ejecutar todos los tests:**
+```bash
 npm test
+```
 
-# Ejecutar tests en modo watch
+**Modo watch:**
+```bash
 npm run test:watch
+```
 
-# Ejecutar tests con reporte de cobertura
+**Con reporte de cobertura:**
+```bash
 npm run test:coverage
 ```
 
-### Cobertura objetivo: ≥ 80%
+### Cobertura de Tests
 
-### Tests incluidos:
+| Métrica | Cobertura |
+|---------|-----------|
+| Statements | 98.72% |
+| Branches | 81.6% |
+| Functions | 98.83% |
+| Lines | 99.77% |
 
-| Suite | Qué verifica |
-|---|---|
-| `weatherService.test.ts` | API calls, adaptador, error codes (404/401/red/vacío), locale y signal |
-| `adaptWeatherResponse` | Función pura: transformación, array vacío, redondeo |
-| `useWeather.test.tsx` | Hook aislado: idle→loading→success/error, reset, locale |
-| `SearchBar.test.tsx` | Input, submit, loading state, Enter key |
-| `WeatherCard.test.tsx` | Temperatura °C/°F, humedad, icono, accesibilidad, toggle |
-| `Header.test.tsx` | Título, subtítulo, ThemeToggle, LanguageSwitcher |
-| `ErrorMessage.test.tsx` | Role alert, texto de error |
-| `LoadingSpinner.test.tsx` | Role status, label para screen readers |
-| `ThemeToggle.test.tsx` | Toggle light↔dark |
-| `LanguageSwitcher.test.tsx` | Toggle es↔en |
-| `Button.test.tsx` | Props por defecto (contained, disableElevation), override |
-| `Input.test.tsx` | fullWidth por defecto, disabled, placeholder |
-| `Typography.test.tsx` | Renderizado, variant, props forwarding |
-| `IconButton.test.tsx` | Render, aria-label, onClick, disabled |
-| `page.test.tsx` | Integración: búsqueda exitosa, error, loading, empty state |
+- 23 suites de tests
+- 156 tests (todos pasan)
+- Tiempo promedio: ~11 segundos
 
----
+![Test Coverage Report](./public/coverage/image.png)
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
-weather-app/
-├── src/
-│   ├── app/[locale]/           # App Router con rutas dinámicas por locale
-│   │   ├── layout.tsx          # Layout con i18n + providers + generateMetadata
-│   │   ├── page.tsx            # Página principal (delega al Template)
-│   │   ├── loading.tsx         # Loading UI (Suspense fallback)
-│   │   ├── error.tsx           # Error boundary
-│   │   └── not-found.tsx       # Página 404
-│   ├── components/
-│   │   ├── atoms/              # Button, Input, Typography, IconButton
-│   │   ├── molecules/          # SearchBar, ErrorMessage, LoadingSpinner,
-│   │   │                         EmptyState, SearchHistory
-│   │   ├── organisms/          # WeatherCard, Header, ThemeToggle, LanguageSwitcher
-│   │   └── templates/          # WeatherTemplate (composición completa)
-│   ├── config/                 # Variables de entorno centralizadas
-│   ├── hooks/                  # useWeather, useSearchHistory, useTemperatureUnit
-│   ├── i18n/                   # Routing y request config de next-intl
-│   ├── messages/               # Traducciones (es.json, en.json)
-│   ├── providers/              # AppProviders (Emotion + next-themes + MUI)
-│   ├── services/               # weatherService, errors (WeatherServiceError)
-│   ├── theme/                  # Temas MUI (light + dark)
-│   ├── types/                  # Interfaces TypeScript
-│   └── __tests__/              # Tests unitarios e integración
-│       ├── app/
-│       ├── components/atoms/
-│       ├── hooks/
-│       ├── services/
-│       └── helpers/
-├── __mocks__/                  # Mock global de next-intl para Jest
-├── docs/adr/                   # Architecture Decision Records
-├── jest.config.ts
-├── jest.setup.ts
-├── .env.example
-├── .prettierrc
-├── eslint.config.mjs
-├── next.config.ts
-├── tsconfig.json
-└── package.json
+src/
+├── app/[locale]/              # Páginas y layout
+├── components/
+│   ├── atoms/                 # Componentes básicos
+│   ├── molecules/             # Componentes compuestos
+│   ├── organisms/             # Componentes complejos
+│   └── templates/             # Layouts de página
+├── hooks/                     # Custom hooks
+├── services/                  # Lógica de negocio y API
+├── config/                    # Configuración
+├── i18n/                      # Internacionalización
+├── messages/                  # Traducciones
+├── theme/                     # Temas de UI
+├── types/                     # Tipos TypeScript
+└── __tests__/                 # Tests unitarios e integración
 ```
 
----
+## Tecnologías Principales
 
-## 🛠️ Tecnologías
-
-| Tecnología | Versión | Propósito |
-|---|---|---|
-| **Next.js** | 16 | Framework React con App Router |
-| **React** | 19 | Librería de UI |
-| **TypeScript** | 5 | Tipado estático |
-| **MUI (Material UI)** | 7 | Design System / librería de componentes |
-| **Emotion** | 11 | CSS-in-JS (requerido por MUI) |
-| **next-intl** | 4 | Internacionalización (i18n) |
-| **next-themes** | 0.4 | Modo claro / oscuro |
-| **Axios** | 1.13 | Cliente HTTP |
-| **Tailwind CSS** | 4 | Utilidades CSS complementarias |
-| **Jest** | 30 | Framework de testing |
-| **React Testing Library** | 16 | Testing de componentes |
+- Next.js 16
+- React 19
+- TypeScript 5
+- MUI 7
+- next-intl (internacionalización)
+- next-themes (tema claro/oscuro)
+- Axios
+- Jest y React Testing Library
 | **Prettier** | 3 | Formateo de código |
 | **ESLint** | 9 | Linting |
 

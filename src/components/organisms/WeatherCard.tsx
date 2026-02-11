@@ -106,7 +106,7 @@ export function WeatherCard({
             alt={data.description}
             width={100}
             height={100}
-            unoptimized
+            unoptimized={true}
             data-testid="weather-icon"
           />
           <Box sx={{ display: "flex", alignItems: "baseline", gap: 0.5 }}>

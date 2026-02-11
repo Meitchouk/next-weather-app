@@ -100,4 +100,15 @@ describe("WeatherCard component", () => {
 
     expect(onToggle).toHaveBeenCalledTimes(1);
   });
+
+  it("should render without optional windGust property", () => {
+    const dataWithoutGust = { ...mockData, windGust: undefined };
+    render(<WeatherCard {...defaultProps} data={dataWithoutGust} />);
+    expect(screen.getByText("Bogotá")).toBeInTheDocument();
+  });
+
+  it("should have accessible semantics with region role", () => {
+    render(<WeatherCard {...defaultProps} />);
+    expect(screen.getByRole("region")).toBeInTheDocument();
+  });
 });

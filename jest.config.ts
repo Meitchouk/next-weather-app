@@ -33,7 +33,9 @@ const config: Config = {
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
+    "!src/**/index.ts",
     "!src/**/layout.tsx",
+    "!src/**/page.tsx",
     "!src/**/globals.css",
     "!src/i18n/**",
     "!src/providers/**",

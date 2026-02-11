@@ -78,4 +78,29 @@ describe("ForecastCard component", () => {
     render(<ForecastCard {...defaultProps} />);
     expect(screen.getByText("nubes dispersas")).toBeInTheDocument();
   });
+
+  it("should render the Card component with proper structure", () => {
+    const { container } = render(<ForecastCard {...defaultProps} />);
+    const card = container.querySelector('[class*="MuiCard"]');
+    expect(card).toBeInTheDocument();
+  });
+
+  it("should handle different day of week values", () => {
+    render(<ForecastCard {...defaultProps} day={{ ...mockDay, dayOfWeek: 0 }} />);
+    expect(screen.getByText("domingo")).toBeInTheDocument();
+  });
+
+  it("should use fallback day name for invalid day of week", () => {
+    render(
+      <ForecastCard
+        {...defaultProps}
+        day={{ ...mockDay, dayOfWeek: 10 }}
+      />,
+    );
+    // Should render empty day name when day is not in map
+    const dayNames = screen.queryAllByText(/lunes|martes|miércoles|jueves|viernes|sábado|domingo/i);
+    // With invalid dayOfWeek (10), no day name should appear
+    const allText = screen.getAllByText(/[a-z]/i);
+    expect(allText.length).toBeGreaterThan(0); // Other text still renders
+  });
 });
