@@ -5,7 +5,6 @@ import { render } from "@/__tests__/helpers/renderWithProviders";
 import { WeatherCard } from "@/components/organisms/WeatherCard";
 import type { WeatherData } from "@/types";
 
-// Mock next/image for JSDOM
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (

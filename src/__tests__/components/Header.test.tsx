@@ -3,13 +3,11 @@ import { screen } from "@testing-library/react";
 import { render } from "@/__tests__/helpers/renderWithProviders";
 import { Header } from "@/components/organisms/Header";
 
-// Mock next-themes (ThemeToggle uses useTheme)
 jest.mock("next-themes", () => ({
   useTheme: () => ({ resolvedTheme: "light", setTheme: jest.fn() }),
   ThemeProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
-// Mock next-intl navigation (LanguageSwitcher uses it)
 jest.mock("@/i18n/routing", () => ({
   routing: { locales: ["es", "en"], defaultLocale: "es" },
   usePathname: () => "/",

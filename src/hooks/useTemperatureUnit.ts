@@ -12,9 +12,7 @@ export function useTemperatureUnit() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY) as TemperatureUnit | null;
       if (saved === "celsius" || saved === "fahrenheit") return saved;
-    } catch {
-      // Ignore
-    }
+    } catch { /* localStorage unavailable (SSR, privacy mode) */ }
     return "celsius";
   });
 
@@ -23,9 +21,7 @@ export function useTemperatureUnit() {
       const next: TemperatureUnit = prev === "celsius" ? "fahrenheit" : "celsius";
       try {
         localStorage.setItem(STORAGE_KEY, next);
-      } catch {
-        // Ignore
-      }
+      } catch { /* localStorage unavailable */ }
       return next;
     });
   }, []);

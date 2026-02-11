@@ -8,8 +8,23 @@ const user = userEvent.setup({ pointerEventsCheck: 0 });
 
 const mockReplace = jest.fn();
 
+declare module "next-intl" {
+  export const __setMockLocale: (locale: string) => void;
+}
+
 // Access the mutable locale setter from the mock
 import { __setMockLocale } from "next-intl";
+
+jest.mock("next-intl", () => {
+  let currentLocale = "es";
+  return {
+    ...jest.requireActual("next-intl"),
+    useLocale: () => currentLocale,
+    __setMockLocale: (locale: string) => {
+      currentLocale = locale;
+    },
+  };
+});
 
 jest.mock("@/i18n/routing", () => ({
   routing: { locales: ["es", "en"], defaultLocale: "es" },
@@ -25,7 +40,7 @@ jest.mock("@/i18n/routing", () => ({
 describe("LanguageSwitcher", () => {
   afterEach(() => {
     jest.clearAllMocks();
-    __setMockLocale("es"); // reset to default
+    __setMockLocale("es");
   });
 
   it("should switch from es to en", async () => {

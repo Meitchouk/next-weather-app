@@ -26,7 +26,6 @@ jest.mock("next-themes", () => ({
   ThemeProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
-// Mock next-intl navigation (LanguageSwitcher uses it)
 jest.mock("@/i18n/routing", () => ({
   routing: { locales: ["es", "en"], defaultLocale: "es" },
   Link: ({ children, ...props }: React.PropsWithChildren<Record<string, unknown>>) => (
@@ -38,7 +37,6 @@ jest.mock("@/i18n/routing", () => ({
   getPathname: jest.fn(),
 }));
 
-// Mock next/image for JSDOM (renders as plain <img>)
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
@@ -47,7 +45,6 @@ jest.mock("next/image", () => ({
   ),
 }));
 
-/** Helper: builds a complete WeatherData mock */
 function buildWeatherData(overrides?: Partial<WeatherData>) {
   return {
     city: "Lima",
@@ -95,7 +92,6 @@ describe("WeatherTemplate — integration", () => {
 
     expect(screen.getByTestId("temperature")).toHaveTextContent("25°C");
     expect(screen.getByTestId("description")).toHaveTextContent("cielo claro");
-    // Min/Max shown in redesigned card
     expect(screen.getByTestId("temp-min")).toHaveTextContent("Mín 22°C");
     expect(screen.getByTestId("temp-max")).toHaveTextContent("Máx 28°C");
   });
@@ -117,7 +113,6 @@ describe("WeatherTemplate — integration", () => {
       expect(errorAlert).toBeDefined();
     });
 
-    // Weather card should NOT be visible
     expect(screen.queryByTestId("temperature")).not.toBeInTheDocument();
   });
 

@@ -63,7 +63,6 @@ describe("useTemperatureUnit hook", () => {
 
   it("should convert celsius to fahrenheit correctly", () => {
     const { result } = renderHook(() => useTemperatureUnit());
-    // In celsius mode, convertTemp returns the value as-is
     expect(result.current.convertTemp(25)).toBe(25);
 
     act(() => result.current.toggleUnit());

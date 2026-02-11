@@ -19,10 +19,9 @@ export interface BreakpointInfo {
 export function useBreakpoint(): BreakpointInfo {
   const theme = useTheme();
 
-  // MUI media queries — each true when the viewport is *at least* that size
-  const isUpSm = useMediaQuery(theme.breakpoints.up("sm")); // ≥ 600
-  const isUpMd = useMediaQuery(theme.breakpoints.up("md")); // ≥ 900
-  const isUpLg = useMediaQuery(theme.breakpoints.up("lg")); // ≥ 1200
+  const isUpSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   return useMemo<BreakpointInfo>(() => {
     const isMobile = !isUpSm;

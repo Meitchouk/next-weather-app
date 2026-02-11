@@ -62,7 +62,6 @@ describe("useCitySuggestions hook", () => {
 
     expect(result.current.loading).toBe(true);
 
-    // Advance past debounce
     await act(async () => {
       jest.advanceTimersByTime(350);
     });
@@ -118,7 +117,6 @@ describe("useCitySuggestions hook", () => {
 
     const { result } = renderHook(() => useCitySuggestions());
 
-    // Start first fetch
     act(() => result.current.fetchSuggestions("Lon"));
 
     // Start second fetch before debounce fires (replaces timer)
@@ -140,7 +138,6 @@ describe("useCitySuggestions hook", () => {
 
   it("should clean up on unmount", () => {
     const { unmount } = renderHook(() => useCitySuggestions());
-    // Should not throw
     unmount();
   });
 });
