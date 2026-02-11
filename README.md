@@ -1,180 +1,135 @@
-# 🌤️ Weather App — Aplicación de Clima
+# Weather App
 
-Aplicación web para consultar el clima actual de cualquier ciudad del mundo. Construida con **Next.js 16**, **TypeScript**, **Tailwind CSS** y la API de **OpenWeatherMap**.
+Aplicación web para consultar el clima actual de cualquier ciudad del mundo. Construida con Next.js 16, TypeScript, MUI 7 e integración con la API de OpenWeatherMap.
 
----
+## Características
 
-## 📋 Tabla de Contenidos
+- Búsqueda de clima actual por nombre de ciudad
+- Conversión de temperatura entre Celsius y Fahrenheit
+- Internacionalización (Español e Inglés)
+- Modo claro y oscuro
+- Historial de búsquedas
+- Cancelación automática de requests obsoletos
+- Accesibilidad (ARIA labels, roles semánticos)
+- Cobertura de tests de 81.6% en branches
 
-- [Características](#-características)
-- [Arquitectura y Patrones de Diseño](#-arquitectura-y-patrones-de-diseño)
-- [Requisitos Previos](#-requisitos-previos)
-- [Instalación](#-instalación)
-- [Configuración](#-configuración)
-- [Ejecución](#-ejecución)
-- [Tests](#-tests)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
+## Requisitos Previos
 
----
+- Node.js 18 o superior
+- npm 9 o superior
+- API Key de OpenWeatherMap (gratuita en https://openweathermap.org/)
 
-## ✨ Características
-
-- Búsqueda del clima actual por nombre de ciudad
-- Muestra temperatura (°C), humedad (%) y descripción del clima
-- Iconos del clima dinámicos
-- Manejo de errores amigable (ciudad no encontrada, API key inválida, red)
-- Diseño responsivo con Tailwind CSS
-- Accesibilidad (labels ARIA, roles semánticos)
-- Cobertura de tests > 80%
-
----
-
-## 🏗️ Arquitectura y Patrones de Diseño
-
-| Patrón | Dónde se aplica | Propósito |
-|---|---|---|
-| **Service/Repository** | `services/weatherService.ts` | Encapsular toda la lógica de comunicación con la API externa |
-| **Adapter** | `adaptWeatherResponse()` | Transformar la respuesta de OpenWeatherMap a nuestro modelo interno |
-| **Custom Hook** | `hooks/useWeather.ts` | Separar lógica de estado y negocio de los componentes de UI |
-| **Container/Presentational** | `page.tsx` ↔ componentes | La página orquesta; los componentes solo presentan datos |
-| **Single Responsibility** | Cada componente | Un componente = una responsabilidad clara |
-| **Barrel Exports** | Archivos `index.ts` | Simplificar imports y controlar la API pública de cada módulo |
-
----
-
-## 🔧 Requisitos Previos
-
-- **Node.js** 18+ (recomendado: 20 LTS)
-- **npm** 9+
-- Cuenta gratuita en [OpenWeatherMap](https://openweathermap.org/) para obtener una API Key
-
----
-
-## 📦 Instalación
+## Instalación
 
 ```bash
-# Clonar el repositorio (si aplica)
 git clone <repo-url>
 cd weather-app
-
-# Instalar dependencias
 npm install
 ```
 
----
+## Configuración
 
-## ⚙️ Configuración
-
-1. Obtén una API Key gratuita en: https://openweathermap.org/api
-2. Copia el archivo de ejemplo de variables de entorno:
-
+1. Copia el archivo de ejemplo:
 ```bash
 cp .env.example .env.local
 ```
 
-3. Edita `.env.local` y reemplaza el valor:
-
+2. Edita `.env.local` con tu API Key de OpenWeatherMap:
 ```
-NEXT_PUBLIC_OPENWEATHER_API_KEY=tu_api_key_aquí
+NEXT_PUBLIC_OPENWEATHER_API_KEY=tu_api_key_aqui
 ```
 
----
+## Ejecución
 
-## 🚀 Ejecución
-
+**Modo desarrollo:**
 ```bash
-# Modo desarrollo (con hot-reload)
 npm run dev
+```
+La aplicación estará disponible en http://localhost:3000
 
-# Build de producción
+**Build de producción:**
+```bash
 npm run build
-
-# Servir build de producción
 npm start
 ```
 
-La aplicación estará disponible en: **http://localhost:3000**
-
----
-
-## 🧪 Tests
-
+**Formatear código:**
 ```bash
-# Ejecutar todos los tests
+npm run format
+```
+
+## Tests
+
+**Ejecutar todos los tests:**
+```bash
 npm test
+```
 
-# Ejecutar tests en modo watch
+**Modo watch:**
+```bash
 npm run test:watch
+```
 
-# Ejecutar tests con reporte de cobertura
+**Con reporte de cobertura:**
+```bash
 npm run test:coverage
 ```
 
-### Cobertura objetivo: ≥ 80%
+### Cobertura de Tests
 
 | Métrica | Cobertura |
-|---|---|
-| Statements | 96.6% |
-| Branches | 82.1% |
-| Functions | 91.7% |
-| Lines | 96.2% |
+|---------|-----------|
+| Statements | 98.72% |
+| Branches | 81.6% |
+| Functions | 98.83% |
+| Lines | 99.77% |
 
-### Tests incluidos:
+- 23 suites de tests
+- 156 tests (todos pasan)
+- Tiempo promedio: ~11 segundos
 
-- **weatherService.test.ts** — Llamadas a la API, adaptador de datos, manejo de errores 404/401/red
-- **SearchBar.test.tsx** — Input, submit, estado loading, Enter key
-- **WeatherCard.test.tsx** — Muestra correcta de temperatura, humedad, descripción, icono
-- **ErrorMessage.test.tsx** — Role alert, texto de error
-- **LoadingSpinner.test.tsx** — Role status, label para screen readers
-- **page.test.tsx** — Integración: búsqueda exitosa, error, estado loading
+![Test Coverage Report](./public/coverage/image.png)
+
+## Estructura del Proyecto
+
+```
+src/
+├── app/[locale]/              # Páginas y layout
+├── components/
+│   ├── atoms/                 # Componentes básicos
+│   ├── molecules/             # Componentes compuestos
+│   ├── organisms/             # Componentes complejos
+│   └── templates/             # Layouts de página
+├── hooks/                     # Custom hooks
+├── services/                  # Lógica de negocio y API
+├── config/                    # Configuración
+├── i18n/                      # Internacionalización
+├── messages/                  # Traducciones
+├── theme/                     # Temas de UI
+├── types/                     # Tipos TypeScript
+└── __tests__/                 # Tests unitarios e integración
+```
+
+## Tecnologías Principales
+
+- Next.js 16
+- React 19
+- TypeScript 5
+- MUI 7
+- next-intl (internacionalización)
+- next-themes (tema claro/oscuro)
+- Axios
+- Jest y React Testing Library
+| **Prettier** | 3 | Formateo de código |
+| **ESLint** | 9 | Linting |
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📝 Decisiones Arquitectónicas (ADR)
 
-```
-weather-app/
-├── src/
-│   ├── app/                  # Next.js App Router
-│   │   ├── layout.tsx        # Layout root
-│   │   ├── page.tsx          # Página principal (Container)
-│   │   └── globals.css       # Estilos globales + Tailwind
-│   ├── components/           # Componentes presentacionales
-│   │   ├── SearchBar.tsx     # Barra de búsqueda
-│   │   ├── WeatherCard.tsx   # Tarjeta de información del clima
-│   │   ├── ErrorMessage.tsx  # Mensaje de error
-│   │   ├── LoadingSpinner.tsx# Spinner de carga
-│   │   └── index.ts          # Barrel export
-│   ├── hooks/                # Custom hooks
-│   │   ├── useWeather.ts     # Hook de lógica de búsqueda del clima
-│   │   └── index.ts
-│   ├── services/             # Capa de servicios (API)
-│   │   ├── weatherService.ts # Servicio OpenWeatherMap
-│   │   └── index.ts
-│   ├── types/                # Tipos TypeScript
-│   │   ├── weather.ts        # Modelos de datos del clima
-│   │   └── index.ts
-│   └── __tests__/            # Tests unitarios e integración
-│       ├── app/
-│       ├── components/
-│       └── services/
-├── jest.config.ts            # Configuración Jest
-├── jest.setup.ts             # Setup de @testing-library/jest-dom
-├── .env.example              # Variables de entorno de ejemplo
-├── .env.local                # Variables de entorno (no versionado)
-├── tsconfig.json
-├── tailwind.config.ts
-└── package.json
-```
+Las decisiones de diseño están documentadas en [`docs/adr/`](docs/adr/):
 
----
-
-## 🛠️ Tecnologías
-
-- **Next.js 16** — Framework React con App Router
-- **TypeScript** — Tipado estático
-- **Tailwind CSS 4** — Utilidades CSS
-- **Axios** — Cliente HTTP
-- **Jest 30** — Framework de testing
-- **React Testing Library** — Testing de componentes
-- **OpenWeatherMap API** — Datos meteorológicos
+- [ADR-001: Atomic Design](docs/adr/001-atomic-design.md)
+- [ADR-002: MUI como Design System](docs/adr/002-mui-design-system.md)
+- [ADR-003: next-intl para i18n](docs/adr/003-next-intl-i18n.md)
+- [ADR-004: Manejo de errores tipados](docs/adr/004-typed-error-handling.md)

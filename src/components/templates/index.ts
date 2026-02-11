@@ -1,0 +1,1 @@
+export { WeatherTemplate } from "./WeatherTemplate";

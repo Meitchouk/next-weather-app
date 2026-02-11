@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "title": "Weather App — Clima en Tiempo Real",
+    "description": "Consulta el clima actual de cualquier ciudad del mundo. Temperatura, humedad y descripción al instante."
+  },
+  "header": {
+    "title": "Weather App",
+    "subtitle": "Busca el clima actual de cualquier ciudad del mundo"
+  },
+  "search": {
+    "placeholder": "Ingresa el nombre de una ciudad...",
+    "inputLabel": "Nombre de la ciudad",
+    "button": "Buscar",
+    "buttonLoading": "Buscando...",
+    "buttonAriaLabel": "Buscar clima",
+    "noResults": "No se encontraron ciudades",
+    "loadingSuggestions": "Buscando ciudades..."
+  },
+  "weather": {
+    "regionLabel": "Información del clima",
+    "humidity": "Humedad",
+    "temperatureUnit": "°C",
+    "fahrenheitUnit": "°F",
+    "toggleToCelsius": "Cambiar a °C",
+    "toggleToFahrenheit": "Cambiar a °F",
+    "min": "Mín",
+    "max": "Máx"
+  },
+  "details": {
+    "feelsLike": "Sensación térmica",
+    "wind": "Viento",
+    "gusts": "ráfagas",
+    "humidity": "Humedad",
+    "pressure": "Presión",
+    "visibility": "Visibilidad",
+    "clouds": "Nubosidad",
+    "sunrise": "Amanecer",
+    "sunset": "Atardecer",
+    "windUnit": "m/s",
+    "pressureUnit": "hPa",
+    "visibilityKm": "km",
+    "visibilityM": "m",
+    "windN": "N",
+    "windNE": "NE",
+    "windE": "E",
+    "windSE": "SE",
+    "windS": "S",
+    "windSW": "SO",
+    "windW": "O",
+    "windNW": "NO",
+    "showMore": "Ver más",
+    "showLess": "Ver menos"
+  },
+  "loading": {
+    "label": "Cargando..."
+  },
+  "errors": {
+    "title": "Error",
+    "emptyCity": "Por favor, ingresa el nombre de una ciudad.",
+    "cityNotFound": "No se encontró la ciudad \"{city}\". Verifica el nombre e intenta de nuevo.",
+    "invalidApiKey": "API Key inválida. Verifica tu configuración.",
+    "generic": "Ocurrió un error al obtener el clima. Intenta de nuevo más tarde.",
+    "unexpected": "Ocurrió un error inesperado."
+  },
+  "emptyState": {
+    "title": "¿Qué clima hace hoy?",
+    "description": "Busca por nombre de ciudad, zona o país"
+  },
+  "history": {
+    "title": "Búsquedas recientes",
+    "clear": "Limpiar"
+  },
+  "errorPage": {
+    "title": "Algo salió mal",
+    "description": "Ocurrió un error inesperado.",
+    "retry": "Reintentar"
+  },
+  "theme": {
+    "toggleLight": "Cambiar a modo claro",
+    "toggleDark": "Cambiar a modo oscuro"
+  },
+  "language": {
+    "switchTo": "English",
+    "code": "es"
+  },
+  "days": {
+    "monday": "lunes",
+    "tuesday": "martes",
+    "wednesday": "miércoles",
+    "thursday": "jueves",
+    "friday": "viernes",
+    "saturday": "sábado",
+    "sunday": "domingo"
+  },
+  "forecast": {
+    "title": "Pronóstico de 5 días",
+    "windUnit": "m/s"
+  },
+  "notFound": {
+    "code": "404",
+    "message": "Página no encontrada"
+  },
+  "apiKeyWarning": {
+    "title": "NEXT_PUBLIC_OPENWEATHER_API_KEY no está configurada",
+    "description": "Las llamadas a la API fallarán. Agrega la clave en tu archivo .env"
+  }
+}

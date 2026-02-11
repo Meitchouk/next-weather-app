@@ -1,4 +1,4 @@
-export { SearchBar } from "./SearchBar";
-export { WeatherCard } from "./WeatherCard";
-export { ErrorMessage } from "./ErrorMessage";
-export { LoadingSpinner } from "./LoadingSpinner";
+export * from "./atoms";
+export * from "./molecules";
+export * from "./organisms";
+export * from "./templates";

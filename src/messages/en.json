@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "title": "Weather App — Real-Time Weather",
+    "description": "Check the current weather for any city in the world. Temperature, humidity and description instantly."
+  },
+  "header": {
+    "title": "Weather App",
+    "subtitle": "Search the current weather for any city in the world"
+  },
+  "search": {
+    "placeholder": "Enter a city name...",
+    "inputLabel": "City name",
+    "button": "Search",
+    "buttonLoading": "Searching...",
+    "buttonAriaLabel": "Search weather",
+    "noResults": "No cities found",
+    "loadingSuggestions": "Searching cities..."
+  },
+  "weather": {
+    "regionLabel": "Weather information",
+    "humidity": "Humidity",
+    "temperatureUnit": "°C",
+    "fahrenheitUnit": "°F",
+    "toggleToCelsius": "Switch to °C",
+    "toggleToFahrenheit": "Switch to °F",
+    "min": "Min",
+    "max": "Max"
+  },
+  "details": {
+    "feelsLike": "Feels like",
+    "wind": "Wind",
+    "gusts": "gusts",
+    "humidity": "Humidity",
+    "pressure": "Pressure",
+    "visibility": "Visibility",
+    "clouds": "Cloudiness",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "windUnit": "m/s",
+    "pressureUnit": "hPa",
+    "visibilityKm": "km",
+    "visibilityM": "m",
+    "windN": "N",
+    "windNE": "NE",
+    "windE": "E",
+    "windSE": "SE",
+    "windS": "S",
+    "windSW": "SW",
+    "windW": "W",
+    "windNW": "NW",
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+  "loading": {
+    "label": "Loading..."
+  },
+  "errors": {
+    "title": "Error",
+    "emptyCity": "Please enter a city name.",
+    "cityNotFound": "City \"{city}\" not found. Check the name and try again.",
+    "invalidApiKey": "Invalid API Key. Check your configuration.",
+    "generic": "An error occurred while fetching the weather. Try again later.",
+    "unexpected": "An unexpected error occurred."
+  },
+  "emptyState": {
+    "title": "What's the weather today?",
+    "description": "Search by city name, area or country"
+  },
+  "history": {
+    "title": "Recent searches",
+    "clear": "Clear"
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred.",
+    "retry": "Retry"
+  },
+  "theme": {
+    "toggleLight": "Switch to light mode",
+    "toggleDark": "Switch to dark mode"
+  },
+  "language": {
+    "switchTo": "Español",
+    "code": "en"
+  },
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "forecast": {
+    "title": "5-Day Forecast",
+    "windUnit": "m/s"
+  },
+  "notFound": {
+    "code": "404",
+    "message": "Page not found"
+  },
+  "apiKeyWarning": {
+    "title": "NEXT_PUBLIC_OPENWEATHER_API_KEY is not configured",
+    "description": "API calls will fail. Add the key to your .env file."
+  }
+}

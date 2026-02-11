@@ -12,7 +12,15 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "coverage/**",
   ]),
+  // Custom rules
+  {
+    rules: {
+      // Prevent console.log leaking to production
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+    },
+  },
 ]);
 
 export default eslintConfig;
