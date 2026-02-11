@@ -124,7 +124,6 @@ function DesktopLayout({
       {status === "error" && error && <ErrorMessage message={error} />}
       {status === "success" && data && (
         <Grid container spacing={3}>
-          {/* Left column: Card + Forecast */}
           <Grid size={{ xs: 12, md: 7, lg: 8 }}>
             <Grow in timeout={500}>
               <Box>
@@ -152,7 +151,6 @@ function DesktopLayout({
             )}
           </Grid>
 
-          {/* Right column: Details panel */}
           <Grid size={{ xs: 12, md: 5, lg: 4 }}>
             <Fade in timeout={700}>
               <Box>

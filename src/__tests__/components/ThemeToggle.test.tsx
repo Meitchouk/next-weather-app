@@ -30,11 +30,8 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
     const button = screen.getByRole("button");
-
-    // Should be disabled on initial render
     expect(button).toBeDisabled();
 
-    // Restore original
     React.useSyncExternalStore = originalUseSyncExternalStore;
   });
 
@@ -42,7 +39,7 @@ describe("ThemeToggle", () => {
     mockResolvedTheme = "light";
     render(<ThemeToggle />);
     const buttons = screen.getAllByRole("button");
-    const themeButton = buttons[buttons.length - 1]; // Get the last button (ThemeToggle)
+    const themeButton = buttons[buttons.length - 1];
     await user.click(themeButton);
     expect(mockSetTheme).toHaveBeenCalledWith("dark");
   });
@@ -62,10 +59,8 @@ describe("ThemeToggle", () => {
     const buttons = screen.getAllByRole("button");
     const themeButton = buttons[buttons.length - 1];
 
-    // Hover to show tooltip
     await user.hover(themeButton);
 
-    // The tooltip should suggest switching to dark
     const tooltipText = await screen.findByRole("tooltip", { hidden: true });
     expect(tooltipText).toBeInTheDocument();
   });
@@ -76,10 +71,8 @@ describe("ThemeToggle", () => {
     const buttons = screen.getAllByRole("button");
     const themeButton = buttons[buttons.length - 1];
 
-    // Hover to show tooltip
     await user.hover(themeButton);
 
-    // The tooltip should suggest switching to light
     const tooltipText = await screen.findByRole("tooltip", { hidden: true });
     expect(tooltipText).toBeInTheDocument();
   });

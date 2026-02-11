@@ -58,7 +58,6 @@ describe("SearchBar component", () => {
     const input = screen.getByRole("textbox");
     await user.type(input, "Tokyo");
 
-    // Trigger form submission via Enter key
     fireEvent.submit(input.closest("form")!);
 
     expect(onSearch).toHaveBeenCalledWith("Tokyo");

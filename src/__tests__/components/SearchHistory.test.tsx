@@ -31,9 +31,7 @@ describe("SearchHistory component", () => {
       <SearchHistory history={history} onSelect={jest.fn()} onClear={jest.fn()} />,
     );
 
-    // Check for history title (translations show "Búsquedas recientes")
     expect(screen.getByText("Búsquedas recientes")).toBeInTheDocument();
-    // Check for clear option (translations show "Limpiar")
     expect(screen.getByText("Limpiar")).toBeInTheDocument();
   });
 
@@ -57,7 +55,6 @@ describe("SearchHistory component", () => {
       <SearchHistory history={history} onSelect={jest.fn()} onClear={onClear} />,
     );
 
-    // Click the "Limpiar" (Clear) button
     const clearButton = screen.getByText("Limpiar");
     await user.click(clearButton);
 

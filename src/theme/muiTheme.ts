@@ -59,7 +59,7 @@ export const darkTheme = createTheme({
       main: "#ce93d8",
     },
     background: {
-      default: "#0f172a", // dark slate
+      default: "#0f172a",
       paper: "#1e293b",
     },
   },

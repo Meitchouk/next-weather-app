@@ -4,7 +4,6 @@ import { render } from "@/__tests__/helpers/renderWithProviders";
 import { ForecastCard } from "@/components/organisms/ForecastCard";
 import type { DailyForecast } from "@/types";
 
-// Mock next/image for JSDOM
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
@@ -97,9 +96,7 @@ describe("ForecastCard component", () => {
         day={{ ...mockDay, dayOfWeek: 10 }}
       />,
     );
-    // Should render empty day name when day is not in map
-    // With invalid dayOfWeek (10), no day name should appear
     const allText = screen.getAllByText(/[a-z]/i);
-    expect(allText.length).toBeGreaterThan(0); // Other text still renders
+    expect(allText.length).toBeGreaterThan(0);
   });
 });

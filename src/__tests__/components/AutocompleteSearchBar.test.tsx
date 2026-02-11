@@ -5,7 +5,6 @@ import { render } from "@/__tests__/helpers/renderWithProviders";
 import { AutocompleteSearchBar } from "@/components/molecules/AutocompleteSearchBar";
 import * as weatherService from "@/services/weatherService";
 
-// Mock the fetchCitySuggestions function
 jest.mock("@/services/weatherService", () => {
   const actual = jest.requireActual("@/services/weatherService");
   return {
@@ -95,10 +94,8 @@ describe("AutocompleteSearchBar component", () => {
       { timeout: 2000 },
     );
 
-    // Clear the input
     await user.clear(input);
 
-    // Suggestions should be cleared
     await waitFor(() => {
       expect(screen.queryByText("Tokyo")).not.toBeInTheDocument();
     });
@@ -143,7 +140,6 @@ describe("AutocompleteSearchBar component", () => {
       { timeout: 2000 },
     );
 
-    // Click on the suggestion
     await user.click(screen.getByText("Paris"));
 
     expect(onSearch).toHaveBeenCalledWith("Paris");

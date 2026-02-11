@@ -4,7 +4,6 @@ import { render } from "@/__tests__/helpers/renderWithProviders";
 import { ForecastSection } from "@/components/organisms/ForecastSection";
 import type { DailyForecast } from "@/types";
 
-// Mock next/image for JSDOM
 jest.mock("next/image", () => ({
   __esModule: true,
   default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (

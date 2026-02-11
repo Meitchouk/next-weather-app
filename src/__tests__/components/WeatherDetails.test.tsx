@@ -37,15 +37,12 @@ describe("WeatherDetails component", () => {
   it("should render core detail items initially", () => {
     render(<WeatherDetails {...defaultProps} />);
 
-    // Core items (visible by default)
     expect(screen.getByText("Sensación térmica")).toBeInTheDocument();
     expect(screen.getByText("Viento")).toBeInTheDocument();
     expect(screen.getByText("Humedad")).toBeInTheDocument();
     expect(screen.getByText("Presión")).toBeInTheDocument();
     expect(screen.getByText("Amanecer")).toBeInTheDocument();
     expect(screen.getByText("Atardecer")).toBeInTheDocument();
-
-    // Should show "Ver más" button
     expect(screen.getByText("Ver más")).toBeInTheDocument();
   });
 
@@ -74,7 +71,6 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Expand to see visibility
     const expandButton = screen.getByText("Ver más");
     await user.click(expandButton);
 
@@ -87,7 +83,6 @@ describe("WeatherDetails component", () => {
       <WeatherDetails {...defaultProps} data={{ ...mockData, visibility: 500 }} />,
     );
 
-    // Expand to see visibility
     const expandButton = screen.getByText("Ver más");
     await user.click(expandButton);
 
@@ -98,7 +93,6 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Expand to see cloudiness
     const expandButton = screen.getByText("Ver más");
     await user.click(expandButton);
 
@@ -133,14 +127,11 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Initially should show "Ver más"
     expect(screen.getByText("Ver más")).toBeInTheDocument();
 
-    // Click "Ver más" button
     const expandButton = screen.getByText("Ver más");
     await user.click(expandButton);
 
-    // Now should show "Ver menos" and the extra items should be visible
     expect(screen.getByText("Ver menos")).toBeInTheDocument();
     expect(screen.getByText("Visibilidad")).toBeVisible();
     expect(screen.getByText("Nubosidad")).toBeVisible();
@@ -152,17 +143,14 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Expand first
     const expandButton = screen.getByText("Ver más");
     await user.click(expandButton);
 
     expect(screen.getByText("Ver menos")).toBeInTheDocument();
 
-    // Click "Ver menos" button
     const collapseButton = screen.getByText("Ver menos");
     await user.click(collapseButton);
 
-    // Should show "Ver más" again
     expect(screen.getByText("Ver más")).toBeInTheDocument();
   });
 
@@ -175,11 +163,10 @@ describe("WeatherDetails component", () => {
       />,
     );
 
-    // Expand to see visibility
     const expandButton = screen.getByText("Ver más");
     await user.click(expandButton);
 
-    // Should be "10 km" not "10.0 km"
+    // "10 km" not "10.0 km" — verifies integer formatting
     expect(screen.getByText("10 km")).toBeInTheDocument();
   });
 
@@ -187,15 +174,12 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Find the expand button (the wrapper Box with role="button")
     const expandButtons = screen.getAllByRole("button");
-    const expandButton = expandButtons[expandButtons.length - 1]; // Last button is the expand/collapse toggle
+    const expandButton = expandButtons[expandButtons.length - 1];
 
-    // Focus and press Enter
     expandButton.focus();
     await user.keyboard("{Enter}");
 
-    // Should show extra details
     expect(screen.getByText("Ver menos")).toBeInTheDocument();
     expect(screen.getByText("Visibilidad")).toBeVisible();
   });
@@ -204,15 +188,12 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Find the expand button
     const expandButtons = screen.getAllByRole("button");
     const expandButton = expandButtons[expandButtons.length - 1];
 
-    // Focus and press Space
     expandButton.focus();
     await user.keyboard(" ");
 
-    // Should show extra details
     expect(screen.getByText("Ver menos")).toBeInTheDocument();
     expect(screen.getByText("Visibilidad")).toBeVisible();
   });
@@ -221,15 +202,12 @@ describe("WeatherDetails component", () => {
     const user = userEvent.setup();
     render(<WeatherDetails {...defaultProps} />);
 
-    // Find the expand button
     const expandButtons = screen.getAllByRole("button");
     const expandButton = expandButtons[expandButtons.length - 1];
 
-    // Focus and press a non-relevant key
     expandButton.focus();
     await user.keyboard("x");
 
-    // Should still show "Ver más" (not expanded)
     expect(screen.getByText("Ver más")).toBeInTheDocument();
   });
 });

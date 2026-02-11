@@ -34,8 +34,9 @@ export function useSearchHistory() {
     setHistory([]);
     try {
       localStorage.removeItem(STORAGE_KEY);
-    } catch {
-      // Ignore
+    } catch (e) { 
+      /* localStorage unavailable */ 
+      console.error("Failed to clear search history from localStorage", e);
     }
   }, []);
 

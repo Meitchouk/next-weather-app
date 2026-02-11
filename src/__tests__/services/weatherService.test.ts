@@ -27,7 +27,6 @@ jest.mock("axios", () => {
 
 const mockedGet = axios.get as jest.MockedFunction<typeof axios.get>;
 
-/** Helper: builds a complete OpenWeatherMap-like API response */
 function buildApiResponse(overrides?: Record<string, unknown>) {
   return {
     data: {

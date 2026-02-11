@@ -18,12 +18,10 @@ const mockedFetch = weatherService.fetchWeatherByCity as jest.MockedFunction<
   typeof weatherService.fetchWeatherByCity
 >;
 
-// Wrapper with MUI theme provider (same as renderWithProviders)
 function Wrapper({ children }: { children: React.ReactNode }) {
   return <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>;
 }
 
-/** Helper: builds a complete WeatherData mock */
 function buildMockWeather(overrides?: Record<string, unknown>) {
   return {
     city: "Lima",
@@ -71,7 +69,6 @@ describe("useWeather hook", () => {
       result.current.searchWeather("Lima");
     });
 
-    // Should be loading immediately
     expect(result.current.status).toBe("loading");
 
     await waitFor(() => {
@@ -172,7 +169,6 @@ describe("useWeather hook", () => {
 
     const { result } = renderHook(() => useWeather(), { wrapper: Wrapper });
 
-    // Start first search
     act(() => {
       result.current.searchWeather("Lima");
     });
@@ -191,10 +187,8 @@ describe("useWeather hook", () => {
   });
 
   it("should ignore aborted request errors silently", async () => {
-    // Simulate abort error
     const abortError = new DOMException("Aborted", "AbortError");
     mockedFetch.mockImplementation((_city, opts) => {
-      // Immediately abort and reject
       return new Promise((_resolve, reject) => {
         if (opts?.signal?.aborted) {
           reject(abortError);
@@ -210,7 +204,6 @@ describe("useWeather hook", () => {
       result.current.searchWeather("Lima");
     });
 
-    // Reset aborts the request
     act(() => {
       result.current.reset();
     });

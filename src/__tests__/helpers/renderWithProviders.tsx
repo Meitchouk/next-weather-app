@@ -28,5 +28,4 @@ export function renderWithProviders(ui: ReactElement, options?: Omit<RenderOptio
 }
 
 export * from "@testing-library/react";
-// Override default render
 export { renderWithProviders as render };
