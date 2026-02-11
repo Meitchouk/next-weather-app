@@ -98,7 +98,6 @@ describe("ForecastCard component", () => {
       />,
     );
     // Should render empty day name when day is not in map
-    const dayNames = screen.queryAllByText(/lunes|martes|miércoles|jueves|viernes|sábado|domingo/i);
     // With invalid dayOfWeek (10), no day name should appear
     const allText = screen.getAllByText(/[a-z]/i);
     expect(allText.length).toBeGreaterThan(0); // Other text still renders

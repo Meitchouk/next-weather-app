@@ -122,14 +122,3 @@ src/
 - Jest y React Testing Library
 | **Prettier** | 3 | Formateo de código |
 | **ESLint** | 9 | Linting |
-
----
-
-## 📝 Decisiones Arquitectónicas (ADR)
-
-Las decisiones de diseño están documentadas en [`docs/adr/`](docs/adr/):
-
-- [ADR-001: Atomic Design](docs/adr/001-atomic-design.md)
-- [ADR-002: MUI como Design System](docs/adr/002-mui-design-system.md)
-- [ADR-003: next-intl para i18n](docs/adr/003-next-intl-i18n.md)
-- [ADR-004: Manejo de errores tipados](docs/adr/004-typed-error-handling.md)

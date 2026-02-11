@@ -23,7 +23,7 @@ export function ApiKeyWarning() {
       <Alert
         severity="error"
         variant="filled"
-        role="status"
+        role="alert"
         sx={{ borderRadius: 0, justifyContent: "center" }}
       >
         <AlertTitle sx={{ mb: 0 }}>

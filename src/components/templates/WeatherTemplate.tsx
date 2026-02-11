@@ -180,8 +180,7 @@ export function WeatherTemplate() {
     if (data) {
       addToHistory(data.city);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, addToHistory]);
 
   const resultsProps: WeatherResultsProps = {
     data,
