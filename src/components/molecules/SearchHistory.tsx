@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
+import MuiLink from "@mui/material/Link";
 import HistoryIcon from "@mui/icons-material/History";
 import { Typography } from "@/components/atoms";
 
@@ -27,17 +28,16 @@ export function SearchHistory({ history, onSelect, onClear }: SearchHistoryProps
         <Typography variant="caption" color="text.secondary" sx={{ mx: 0.25 }}>
           ·
         </Typography>
-        <Typography
+        <MuiLink
+          component="button"
           variant="caption"
           color="text.secondary"
+          underline="hover"
           onClick={onClear}
-          sx={{
-            cursor: "pointer",
-            "&:hover": { textDecoration: "underline" },
-          }}
+          sx={{ cursor: "pointer" }}
         >
           {t("clear")}
-        </Typography>
+        </MuiLink>
       </Box>
 
       <Box

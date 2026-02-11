@@ -26,7 +26,7 @@ describe("ApiKeyWarning component", () => {
     mockApiKey = "";
 
     const { container } = render(<ApiKeyWarning />);
-    expect(container.querySelector('[role="status"]')).toBeInTheDocument();
+    expect(container.querySelector('[role="alert"]')).toBeInTheDocument();
     expect(container).toHaveTextContent("NEXT_PUBLIC_OPENWEATHER_API_KEY no está configurada");
   });
 
@@ -34,6 +34,6 @@ describe("ApiKeyWarning component", () => {
     mockApiKey = "test-key-123";
 
     const { container } = render(<ApiKeyWarning />);
-    expect(container.querySelector('[role="status"]')).not.toBeInTheDocument();
+    expect(container.querySelector('[role="alert"]')).not.toBeInTheDocument();
   });
 });

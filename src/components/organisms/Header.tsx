@@ -60,6 +60,7 @@ export function Header({ searchSlot }: HeaderProps) {
           flexShrink: 0,
           order: { xs: -1, md: 0 },
           alignSelf: { xs: "flex-end", md: "center" },
+          ml: { md: "auto" },
         }}
       >
         <LanguageSwitcher />

@@ -1,5 +1,5 @@
 import React from "react";
-import { screen, render as rtlRender } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { render } from "@/__tests__/helpers/renderWithProviders";
 import { ThemeToggle } from "@/components/organisms/ThemeToggle";
@@ -22,9 +22,11 @@ describe("ThemeToggle", () => {
   it("should render a disabled button on initial mount (server placeholder)", () => {
     // Override useSyncExternalStore to simulate server render
     const originalUseSyncExternalStore = React.useSyncExternalStore;
-    React.useSyncExternalStore = jest.fn((subscribe, getSnapshot, getServerSnapshot) => {
-      return getServerSnapshot?.() ?? false; // Server side returns false (not mounted)
-    });
+    (React as Record<string, unknown>).useSyncExternalStore = jest.fn(
+      (_subscribe: unknown, _getSnapshot: unknown, getServerSnapshot?: () => unknown) => {
+        return getServerSnapshot?.() ?? false;
+      },
+    );
 
     render(<ThemeToggle />);
     const button = screen.getByRole("button");

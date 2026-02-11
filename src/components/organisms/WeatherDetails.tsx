@@ -177,9 +177,13 @@ export function WeatherDetails({ data, convertTemp, unitSymbol }: WeatherDetails
       <Box
         role="button"
         tabIndex={0}
+        aria-expanded={expanded}
         onClick={() => setExpanded(!expanded)}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") setExpanded(!expanded);
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setExpanded(!expanded);
+          }
         }}
         sx={{
           display: "flex",

@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { render } from "@/__tests__/helpers/renderWithProviders";
 import { WeatherTemplate } from "@/components/templates/WeatherTemplate";
 import * as weatherService from "@/services/weatherService";
+import type { WeatherData } from "@/types";
 
 // Mock the service module — partial mock to preserve WeatherServiceError class
 jest.mock("@/services/weatherService", () => {
@@ -47,7 +48,7 @@ jest.mock("next/image", () => ({
 }));
 
 /** Helper: builds a complete WeatherData mock */
-function buildWeatherData(overrides?: Partial<weatherService.default>) {
+function buildWeatherData(overrides?: Partial<WeatherData>) {
   return {
     city: "Lima",
     country: "PE",
@@ -111,7 +112,9 @@ describe("WeatherTemplate — integration", () => {
     await user.keyboard("{Enter}");
 
     await waitFor(() => {
-      expect(screen.getByRole("alert")).toHaveTextContent(/No se encontró la ciudad/);
+      const alerts = screen.getAllByRole("alert");
+      const errorAlert = alerts.find((el) => el.textContent?.match(/No se encontró la ciudad/));
+      expect(errorAlert).toBeDefined();
     });
 
     // Weather card should NOT be visible
